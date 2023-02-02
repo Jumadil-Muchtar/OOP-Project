@@ -1,12 +1,12 @@
 
-import kotlin.time.*
+import java.time.Duration
 
 
-open class DurationRental(week: Int, day: Int, hour: Int){
-    private var week: Int = week
-    private var day: Int = day
-    private var hour: Int = hour
-    var durationRental : Duration = Duration.INFINITE
+open class DurationRental(week: Long, day: Long, hour: Long){
+    private var week: Long = week
+    private var day: Long = day
+    private var hour: Long = hour
+    var durationRental : Duration = Duration.ZERO
         private set
 
     init {
@@ -19,16 +19,15 @@ open class DurationRental(week: Int, day: Int, hour: Int){
             this.hour = this.hour % 24
         }
 
-        var weekk = (week*7).toDuration(DurationUnit.DAYS)
-        var dayy = day.toDuration(DurationUnit.DAYS)
-        var hourr = hour.toDuration(DurationUnit.HOURS)
-        this.durationRental = weekk.plus(dayy).plus(hourr)
+        var totalDay = this.day + this.day * 7
+        var hourr = Duration.ofHours(this.hour)
+        this.durationRental = hourr.plusDays(totalDay)
     }
-    constructor(day: Int, hour: Int): this(0,day, hour)
-    constructor(hour: Int): this(0, 0,hour)
-    constructor(duration: Duration) : this(duration.toJavaDuration().toDaysPart().toInt(), duration.toJavaDuration().toHoursPart().toInt())
+    constructor(day: Long, hour: Long): this(0,day, hour)
+    constructor(hour: Long): this(0, 0,hour)
+    constructor(duration: Duration) : this(duration.toDaysPart(), duration.toHoursPart().toLong())
     public fun printDuration(){
-        println("Abstract Value : ${this.durationRental.absoluteValue}")
+        println("Abstract Value : ${this.durationRental.abs()}")
     }
     public fun compareTo(duration: Duration): Int{
         return this.durationRental.compareTo(duration)

@@ -1,6 +1,6 @@
 import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
-import kotlin.time.Duration
+import java.time.Duration
 
 class CustomerApp(session: Session) {
     var session: Session = session
@@ -185,21 +185,20 @@ class CustomerApp(session: Session) {
         println("Please input duration of your rental.")
 
         print("Week : ")
-        val week = readln().toDouble()
+        val week = readln().toLong()
         print("Day : ")
-        val day = readln().toDouble()
+        val day = readln().toLong()
         print("Hour : ")
-        val hour = readln().toDouble()
+        val hour = readln().toLong()
         // Aplikasi Customer melakukan kalkulasi jumlah biaya sewa yang harus dibayarkan.
         // Kalkulasi ini berdasarkan jumlah setiap priode dengan biaya sewa setiap periode
-        var costRental = week*priceRentalperWeek + day*priceRentalperDay + hour*priceRentalperHour
-        var costRentall = costRental.toLong()
+        var costRentall = week*priceRentalperWeek + day*priceRentalperDay + hour*priceRentalperHour
         // Menampilkan biaya rental kepada Customer
         println("Cost of this rental : Rp $costRentall,00")
 
 
         // Kemudian melakukan konversi dari jumlah setiap periode penyewaan ke objek Duration yang merupakan standard libray dari Kotlin.
-        var durationrental = DurationRental(week.toInt(), day.toInt(), hour.toInt()).durationRental
+        var durationrental = DurationRental(week, day, hour).durationRental
 
 //        println("---------- Input Duration ----------")
         // Mengarahkan Customer ke sub menu Pay Rental

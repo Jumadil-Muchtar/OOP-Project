@@ -1,8 +1,6 @@
 
 import java.time.LocalDateTime
-import kotlin.time.Duration
-import kotlin.time.toJavaDuration
-import java.time.Duration as JavaDuration
+import java.time.Duration
 
 class OrderTransaction(id:Long, bikes: Bikes, customer: Customer, idOwner: Int, time: LocalDateTime, initialDuration: Duration, cost: Long): DurationRental(initialDuration){
     val idOrderTransaction: Long = id
@@ -13,7 +11,7 @@ class OrderTransaction(id:Long, bikes: Bikes, customer: Customer, idOwner: Int, 
     var rentedDateTime: LocalDateTime = time
     var isPayed: Boolean = false
     var initialDuration :Duration = initialDuration
-    lateinit var realDuration : JavaDuration
+    lateinit var realDuration : Duration
     var isReturn : Boolean = false
     var returnState : String = "Not yet returned"
     lateinit var dueDateTime : LocalDateTime
@@ -28,12 +26,12 @@ class OrderTransaction(id:Long, bikes: Bikes, customer: Customer, idOwner: Int, 
     }
     fun calculateDueDateTime(){
         var localDateTime = this.rentedDateTime
-        var newDateTime = localDateTime.plusSeconds(this.initialDuration.inWholeSeconds)
+        var newDateTime = localDateTime.plusSeconds(this.initialDuration.toSeconds())
         this.dueDateTime =  newDateTime
     }
     fun returnBike(): Boolean{
         if (this.isReturnLate()){
-            var durationLate = this.realDuration.minus(this.initialDuration.toJavaDuration())
+            var durationLate = this.realDuration.minus(this.initialDuration)
             this.calculateFine(durationLate)
             println("You were fined for being late to return our bikes. You have to pay as much as Rp. ${this.totalFine}")
             return false
@@ -48,8 +46,8 @@ class OrderTransaction(id:Long, bikes: Bikes, customer: Customer, idOwner: Int, 
 
     fun isReturnLate(): Boolean{
         this.returnDateTime = LocalDateTime.now()
-        this.realDuration = JavaDuration.between(this.rentedDateTime, this.returnDateTime)
-        var comparing = this.realDuration.compareTo(this.initialDuration.toJavaDuration())
+        this.realDuration = Duration.between(this.rentedDateTime, this.returnDateTime)
+        var comparing = this.realDuration.compareTo(this.initialDuration)
         when (comparing) {
             1 -> return true
 
@@ -67,7 +65,7 @@ class OrderTransaction(id:Long, bikes: Bikes, customer: Customer, idOwner: Int, 
             }
         }
     }
-    fun calculateFine(durationLate: JavaDuration){
+    fun calculateFine(durationLate: Duration){
         var numberOfWeeks = durationLate.toDaysPart() / 7
         var numberOfDays = durationLate.toDaysPart()
         var numberOfHours = durationLate.toHoursPart()

@@ -1,6 +1,6 @@
 import java.time.LocalDateTime
 import kotlin.random.Random
-import kotlin.time.Duration
+import java.time.Duration
 
 class Session(customer: ArrayList<Customer>,
               ownerRental: ArrayList<OwnerRental>,
