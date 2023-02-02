@@ -291,7 +291,7 @@ class CustomerApp(session: Session) {
             NAMA CUSTOMER : ${this.customer.name}
             UNIT RENTAL : ${this.bike.model} - ${this.bike.merk}
             TANGGAL RENTAL : ${this.transaction.rentedDateTime}
-            DURASI RENTAL : ${this.transaction.initialDuration}
+            DURASI RENTAL : ${this.transaction.getDurationRental()}
             BIAYA RENTAL : ${this.transaction.cost}
             TANGGAL JATUH TEMPO: ${this.transaction.dueDateTime}
             
@@ -417,7 +417,7 @@ class CustomerApp(session: Session) {
             Owner: ${this.session.getOwnerRental(this.transaction.idOwnerRental).name}
             Unit Bike : ${this.transaction.bikes.model} - ${this.transaction.bikes.merk}
             Rented Date : ${this.transaction.rentedDateTime}
-            Duration : ${this.transaction.initialDuration}
+            Duration : ${this.transaction.getDurationRental()}
             Cost : ${this.transaction.cost}
             Due Date: ${this.transaction.dueDateTime}
             State : ${this.transaction.returnState}

@@ -4,7 +4,7 @@ import kotlin.time.Duration
 import kotlin.time.toJavaDuration
 import java.time.Duration as JavaDuration
 
-class OrderTransaction(id:Long, bikes: Bikes, customer: Customer, idOwner: Int, time: LocalDateTime, initialDuration: Duration, cost: Long){
+class OrderTransaction(id:Long, bikes: Bikes, customer: Customer, idOwner: Int, time: LocalDateTime, initialDuration: Duration, cost: Long): DurationRental(initialDuration){
     val idOrderTransaction: Long = id
     var customer: Customer = customer
     var idOwnerRental: Int = idOwner
@@ -80,5 +80,6 @@ class OrderTransaction(id:Long, bikes: Bikes, customer: Customer, idOwner: Int, 
         }
         this.totalFine = totalOfFine.toLong()
     }
+
 
 }
