@@ -10,7 +10,7 @@ class Customer (id: Int, name: String, nik: String, address: String): Person(){
 //    var listOfMyBikeRented : ArrayList<Bikes> = arrayListOf<Bikes>()
     var listOfMyOrderTransaction : ArrayList<OrderTransaction> = arrayListOf<OrderTransaction>()
 
-    public fun topupSaldo(){
+    public fun topupMoney(){
         println("How many money to topup your Account?")
         print("Rp. ")
         val topup: Long = readln().toLong()
