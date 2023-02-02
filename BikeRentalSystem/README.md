@@ -1,5 +1,5 @@
 # Bike Rental System
-Bike Rental System yaitu suatu sistem penyewaan sepeda yang menghubungkan antara pemilik sepeda dengan penyewa sepeda. Sistem ini dibangun berdasarkan paradigma pemrograman berorientasi objek (Object Oriented Programming) dalam bahasa Kotlin.
+Bike Rental System yaitu suatu sistem penyewaan sepeda yang menghubungkan antara pemilik sepeda dengan penyewa sepeda. Sistem ini dibangun berdasarkan paradigma pemrograman berorientasi objek (Object Oriented Programming) dalam bahasa Kotlin. 
 
 Adapun fitur-fitur pada sistem ini yaitu:
 1. Fitur login/logout dan register oleh Customer
@@ -8,6 +8,8 @@ Adapun fitur-fitur pada sistem ini yaitu:
 4. Fitur MyOrderTransaction (daftar transaksi penyewaan)
 5. Fitur Pay Rental (membayar sewa sepeda) 
 5. Fitur Return Bikes (mengembalikan sepeda)
+
+Sistem ini belum menerapkan database, sehingga setiap data hanya disimpan dalam ArrayList kotlin di class Session.
 
 
 
